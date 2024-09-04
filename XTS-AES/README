@@ -1,3 +1,13 @@
+/************************************************************************************/
+  Nov. 2023
+
+  The project is based on below repository:
+  https://github.com/YunJinHan/Cryptography/tree/master/XTS-AES
+
+  and modified by TC Wei, adding XTS mode 192-bit & 256-bit for AES encoding/decoding
+/************************************************************************************/
+
+
 # Project Structure-1 (ECB/basic_AES mode)
 main.c
   └ AES.c

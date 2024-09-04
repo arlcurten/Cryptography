@@ -1,0 +1,40 @@
+# Project Structure-1 (ECB/basic_AES mode)
+main.c
+  └ AES.c
+
+# Project Structure-2 (XTS mode):
+main.c
+  └ XTS_AES.c
+     └ AES.c
+
+
+
+# Please refers to main.c for caller examples
+# Input array format is hex, byte by byte 
+(ex: 128 bits key input array, 
+    key[]= {  0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6,
+              0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c}  )
+# Self-defined Type "BYTE" = 8 bits, which can be transferred into "char" directly
+
+
+## Calling function with Parameters ##
+
+# void XTS_AES(BYTE *plain, BYTE *cipher, uint8_t *iv, unsigned int size, BYTE* key, int mode, int key_size)
+plain:    input plain text (ENC) / output plain text (DEC)
+cipher:   output ciper text (ENC) / input cipher text (DEC)
+iv:       initial vector for XTS mode
+size:     input plain(DEC)/cipher(DEC) text size (in byte)
+key:      XTS mode key (doulbe size of basic AES mode key); 
+          must concatenate key1 & key2 together while having both key seperately
+mode:     ENC/DEC to select encrypt/decript
+key_size: Key size in bits (128/192/256)
+
+
+# void AES(BYTE *plain, BYTE *cipher, BYTE *key, int mode, int key_size)
+plain:    input plain text (ENC) / output plain text (DEC)
+cipher:   output ciper text (ENC) / input cipher text (DEC)
+key:      ECB mode key
+mode:     ENC/DEC to select encrypt/decript
+key_size: Key size in bits (128/192/256)
+
+ps: AES function overwrite "plain" array inside so it's better copy original plain input before executing this function while in ENC mode
